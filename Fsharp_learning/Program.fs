@@ -1,27 +1,24 @@
 open System
 open Fsharp_learning
-open Type
+open Contact
 
-let from myType =
-    sprintf $"from {myType.FirstName} {myType.Address1}"
-    
+let from contact =
+    $"from %s{contact.Name.FirstName} from %s{contact.PostalContactInfo.Address.State}"
+
 [<EntryPoint>]
 let main argv =
-    let myType1 =
-        { FirstName = "Dima"
-          MiddleInitial = ""
-          LastName = "Molochkov"
-          EmailAddress = "molochkov.dima@mail.ru"
-          IsEmailVerified = true
-          Address1 = "Russian Federation"
-          Address2 = "Russia"
-          City = "Vladimir"
-          State = "Central District"
-          Zip = "600000"
-          IsAddressValid = false }
-        
-    let myType2 = { myType1 with FirstName = "YMHUK"; LastName = "" }
-        
-    Console.WriteLine($"Hello world {from myType1}")
-    printfn $"Hello world {from myType2}"
+
+    let contact =
+        { Name = { FirstName = "Dima"; MiddleInitial = None; LastName = "Molochkov" }
+          EmailContactInfo = { EmailAddress = "molochkov.dima@mail.ru"; IsEmailVerified = true }
+          PostalContactInfo =
+              { Address =
+                    { Address1 = "Pushkin street house No. 15"
+                      Address2 = "Apartment No. 33"
+                      City = "Vladimir"
+                      State = "Russian Federation"
+                      Zip = "600001" }
+                IsAddressValid = true } }
+
+    printfn $"Hello world {from contact}"
     0
