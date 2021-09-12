@@ -1,6 +1,6 @@
 ﻿module Fsharp_learning.EmailAddress
 
-type EmailAddress = EmailAddress of string
+type T = EmailAddress of string
 
 // wrap
 let create (s: string) =

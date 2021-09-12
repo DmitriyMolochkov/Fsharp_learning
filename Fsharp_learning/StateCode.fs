@@ -1,6 +1,6 @@
 ﻿module Fsharp_learning.StateCode
 
-type StateCode = StateCode of string
+type T = StateCode of string
 
 // wrap
 let create (s: string) =

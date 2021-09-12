@@ -3,7 +3,7 @@ open Fsharp_learning
 open Contact
 
 let from contact =
-    $"from %s{contact.Name.FirstName} from %s{contact.PostalContactInfo.Address.State |> StateCode.value}"
+    $"from %s{contact.Name.FirstName} from %s{contact.PostalContactInfo.Address.State |> StateCode.value}, my email is %s{contact.EmailContactInfo.EmailAddress |> EmailAddress.value}"
     
 [<EntryPoint>]
 let main argv =
