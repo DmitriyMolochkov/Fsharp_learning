@@ -1,20 +1,15 @@
 open System
 open Fsharp_learning
 open Contact
-open Microsoft.FSharp.Reflection
 
 let from contact =
-    let (StateCode code) = contact.PostalContactInfo.Address.State
-    //$"from %s{contact.Name.FirstName} from %s{match contact.PostalContactInfo.Address.State with |StateCode code -> code}"
-    $"from %s{contact.Name.FirstName} from %s{code}"
+    $"from %s{contact.Name.FirstName} from %s{contact.PostalContactInfo.Address.State |> StateCode.value}"
     
-
-
 [<EntryPoint>]
 let main argv =
-    match (CreateEmailAddress "molochkov.dima@mail.ru") with
-    | Success email ->
-        match (CreateStateCode "RU") with
+    match (EmailAddress.create "molochkov.dima@mail.ru") with
+    | Some email ->
+        match (StateCode.create "RU") with
         | Some stateCode ->
             let contact =
                 { Name = { FirstName = "Dima"; MiddleInitial = None; LastName = "Molochkov" }
@@ -29,5 +24,5 @@ let main argv =
                         IsAddressValid = true } }
             printfn $"Hello world {from contact}"
         | None -> ()
-    | Error error -> printfn $"Error: %s{error}"
+    | None -> ()
     0

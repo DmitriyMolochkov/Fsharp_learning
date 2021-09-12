@@ -7,6 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <Compile Include="EmailAddress.fs" />
+        <Compile Include="StateCode.fs" />
         <Compile Include="Contact.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>
