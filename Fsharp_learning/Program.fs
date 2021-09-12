@@ -7,8 +7,7 @@ let from contact =
     
 [<EntryPoint>]
 let main argv =
-    match (EmailAddress.create "molochkov.dima@mail.ru") with
-    | Some email ->
+    let createContact email =
         match (StateCode.create "RU") with
         | Some stateCode ->
             let contact =
@@ -24,5 +23,10 @@ let main argv =
                         IsAddressValid = true } }
             printfn $"Hello world {from contact}"
         | None -> ()
-    | None -> ()
+        
+    let createError error =
+        printfn $"Error %s{error}"
+        
+    EmailAddress.createWithCont createContact createError "molochkov.dima@mail.ru"
+
     0

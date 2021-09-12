@@ -2,12 +2,21 @@
 
 type T = EmailAddress of string
 
-// wrap
-let create (s: string) =
+// create with continuation
+let createWithCont success failure (s: string) =
     if System.Text.RegularExpressions.Regex.IsMatch(s, @"^\S+@\S+\.\S+$") then
-        Some(EmailAddress s)
+        success (EmailAddress s)
     else
-        None
+        failure "Email address must contain an @ sign"
 
-// unwrap
-let value (EmailAddress e) = e
+// create directly
+let create s =
+    let success e = Some e
+    let failure _ = None
+    createWithCont success failure s
+
+// unwrap with continuation
+let apply f (EmailAddress e) = f e
+
+// unwrap directly
+let value e = apply id e
