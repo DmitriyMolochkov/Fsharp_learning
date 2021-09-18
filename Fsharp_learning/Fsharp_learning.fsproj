@@ -11,6 +11,8 @@
         <Compile Include="EmailAddress.fs" />
         <Compile Include="StateCode.fsi" />
         <Compile Include="StateCode.fs" />
+        <Compile Include="Phone.fsi" />
+        <Compile Include="Phone.fs" />
         <Compile Include="Contact.fs" />
         <Compile Include="Program.fs" />
     </ItemGroup>

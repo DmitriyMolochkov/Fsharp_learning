@@ -22,11 +22,18 @@ type PostalContactInfo =
     { Address: PostalAddress
       IsAddressValid: bool }
     
-type ContactInfo =
-    | EmailOnly of EmailContactInfo
-    | PostOnly of PostalContactInfo
-    | EmailAndPost of EmailContactInfo * PostalContactInfo
+type PhoneContactInfo =
+    { Phone: Phone.T
+      IsPhoneValid: bool }
+    
+type ContactMethod =
+    | Email of EmailContactInfo
+    | PostalAddress of PostalContactInfo
+    | HomePhone of PhoneContactInfo
+    | WorkPhone of PhoneContactInfo
 
+type ContactInfo = { ContactMethods : ContactMethod list }
+    
 type Contact =
     { Name: PersonalName
       ContactInfo: ContactInfo }
